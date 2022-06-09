@@ -1,5 +1,6 @@
 package boardGame.stone;
 
+import boardGame.board.OthelloBoard;
 import boardGame.consts.OthelloConsts;
 import boardGame.message.OthelloMessage;
 
@@ -22,45 +23,20 @@ public class OthelloStone implements Stone {
 	private int blackCount;
 
 	/**
-	 * コマ数を計算
+	 * コマ数を表示
 	 *
 	 * @param board
 	 *
 	 * @return
 	 */
-	public void count(int[][] board) {
+	public void show(int[][] board) {
 
-		// コマ（白）の合計
-		int whiteCount = 0;
-
-		// コマ（黒）の合計
-		int blackCount = 0;
-
-		// 一マスずつ集計
-		for (int y = 0; y < OthelloConsts.MASU; y++) {
-			for (int x = 0; x < OthelloConsts.MASU; x++) {
-				// コマ（白）の場合
-				if (board[y][x] == OthelloConsts.WHITE_STONE) {
-					whiteCount++;
-				}
-				// コマ（黒）の場合
-				else if (board[y][x] == OthelloConsts.BLACK_STONE) {
-					blackCount++;
-				}
-			}
-		}
-
-		this.blackCount = blackCount;
-		this.whiteCount = whiteCount;
-	}
-
-	/**
-	 * コマ数を表示
-	 *
-	 * @return
-	 */
-	public void show() {
+		// コマ（白）の数を表示
+		countWhiteStone(board);
 		OthelloMessage.whiteCountMsg(whiteCount);
+
+		// コマ（黒）の数を表示
+		countBlackStone(board);
 		OthelloMessage.blackCountMsg(blackCount);
 	}
 
@@ -71,13 +47,14 @@ public class OthelloStone implements Stone {
 
 		// コマ（白）の合計
 		int whiteCount = 0;
-		for (int y = 0; y < OthelloConsts.MASU; y++) {
-			for (int x = 0; x < OthelloConsts.MASU; x++) {
+		for (int y = 0; y < OthelloBoard.masu; y++) {
+			for (int x = 0; x < OthelloBoard.masu; x++) {
 				if (board[y][x] == OthelloConsts.WHITE_STONE) {
 					whiteCount++;
 				}
 			}
 		}
+		this.whiteCount = whiteCount;
 		return whiteCount;
 	}
 
@@ -88,13 +65,14 @@ public class OthelloStone implements Stone {
 
 		// コマ（黒）の合計
 		int blackCount = 0;
-		for (int y = 0; y < OthelloConsts.MASU; y++) {
-			for (int x = 0; x < OthelloConsts.MASU; x++) {
+		for (int y = 0; y < OthelloBoard.masu; y++) {
+			for (int x = 0; x < OthelloBoard.masu; x++) {
 				if (board[y][x] == OthelloConsts.BLACK_STONE) {
 					blackCount++;
 				}
 			}
 		}
+		this.blackCount = blackCount;
 		return blackCount;
 	}
 }

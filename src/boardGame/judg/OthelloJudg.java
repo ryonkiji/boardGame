@@ -1,7 +1,6 @@
 package boardGame.judg;
 
 import boardGame.board.OthelloBoard;
-import boardGame.consts.OthelloConsts;
 import boardGame.consts.StoneColor;
 
 /**
@@ -20,26 +19,8 @@ public class OthelloJudg {
 	 * @return
 	 */
 	public boolean isEmptySpace(OthelloBoard board) {
-		if (isEmptySpace(board, StoneColor.WHITE.getColorNum()) && isEmptySpace(board, StoneColor.BLACK.getColorNum())) {
+		if (board.isEmptySpace(StoneColor.WHITE.getColorNum()) && board.isEmptySpace(StoneColor.BLACK.getColorNum())) {
 			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * 1マスずつ盤面にコマを置く箇所があるかを問い合わせる
-	 *
-	 * @param board
-	 *
-	 * @return
-	 */
-	public boolean isEmptySpace(OthelloBoard board, int color) {
-		for (int y = 1; y < OthelloConsts.MASU; y++) {
-			for (int x = 1; x < OthelloConsts.MASU; x++) {
-				if (board.canPut(y, x, color)) {
-					return true;
-				}
-			}
 		}
 		return false;
 	}
@@ -52,8 +33,8 @@ public class OthelloJudg {
 	 * @param y
 	 * @param x
 	 */
-	public boolean canPut(OthelloBoard board, int y, int x, int stoneColor) {
-		return board.canPut(y, x, stoneColor);
+	public boolean canReverse(OthelloBoard board, int y, int x, int stoneColor) {
+		return board.canReverse(y, x, stoneColor);
 	}
 
 	/**

@@ -14,11 +14,6 @@ public class OthelloConsts {
 	public static final String CRLF = System.getProperty("line.separator");
 
 	/**
-	 * オセロのマス
-	 */
-	public static final int MASU = 9;
-
-	/**
 	 * 空欄
 	 */
 	public static final int ORIGIN = 10;

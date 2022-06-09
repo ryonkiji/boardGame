@@ -1,7 +1,6 @@
 package boardGame.tactic;
 
 import boardGame.board.OthelloBoard;
-import boardGame.consts.OthelloConsts;
 
 /**
  * オセロ初級戦術クラス
@@ -12,19 +11,21 @@ import boardGame.consts.OthelloConsts;
 public class OthelloLowerLevelTactic implements OthelloTactic {
 
 	/**
-	 * コマを置く位置情報を取得
+	 * コマを任意のマスに置く
+	 *
+	 * @param board
+	 * @param stoneColor
 	 */
-	public int[] getPosition(OthelloBoard board, int color) {
+	public void put(OthelloBoard board, int color) {
 
 		// 一番初めにヒットしたコマが置ける座標を取得
-		for (int y = 1; y < OthelloConsts.MASU; y++) {
-			for (int x = 1; x < OthelloConsts.MASU; x++) {
-				if (board.canPut(y, x, color)) {
-					int[] num = { y, x };
-					return num;
+		for (int y = 1; y < OthelloBoard.masu; y++) {
+			for (int x = 1; x < OthelloBoard.masu; x++) {
+				if (board.canReverse(y, x, color)) {
+					// 座標にコマを置く
+					board.put(y, x, color);
 				}
 			}
 		}
-		return null;
 	}
 }

@@ -76,10 +76,7 @@ public class OthelloController extends GameController {
 
 		System.out.println("<<オセロゲーム開始！>>");
 
-		// コマ数を計算
-		board.calc();
-
-		// 盤面を表示
+		// コマ数と盤面を表示
 		board.show();
 
 		// 判定クラスインスタンス化
@@ -95,10 +92,7 @@ public class OthelloController extends GameController {
 				rival.put(board);
 			}
 
-			// コマ数を計算
-			board.calc();
-
-			// 盤面を表示
+			// コマ数と盤面を表示
 			board.show();
 
 			// 次のプレイヤーへ

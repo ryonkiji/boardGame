@@ -11,11 +11,10 @@ import boardGame.board.OthelloBoard;
 public interface OthelloTactic {
 
 	/**
-	 * コマを置く位置情報を取得
+	 * コマを任意のマスに置く
 	 *
 	 * @param board
-	 * @param color
-	 * @return
+	 * @param stoneColor
 	 */
-	public abstract int[] getPosition(OthelloBoard board, int color);
+	public abstract void put(OthelloBoard board, int stoneColor);
 }

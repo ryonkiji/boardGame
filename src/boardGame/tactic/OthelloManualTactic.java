@@ -14,9 +14,12 @@ import boardGame.judg.OthelloJudg;
 public class OthelloManualTactic implements OthelloTactic {
 
 	/**
-	 * コマを置く位置情報を取得
+	 * コマを任意のマスに置く
+	 *
+	 * @param board
+	 * @param stoneColor
 	 */
-	public int[] getPosition(OthelloBoard board, int color) {
+	public void put(OthelloBoard board, int color) {
 
 		Scanner s = new Scanner(System.in);
 		OthelloJudg judg = new OthelloJudg();
@@ -30,16 +33,22 @@ public class OthelloManualTactic implements OthelloTactic {
 
 		// 正しい入力を受け付けるまで繰り返し入力を求める
 		while (!isInputOk) {
-			// y座標入力受付
-			System.out.println("コマを置くy座標を入力して下さい。");
-			y = s.nextInt();
 
-			// x座標入力受付
-			System.out.println("コマを置くx座標を入力して下さい。");
-			x = s.nextInt();
+			try {
+				// y座標入力受付
+				System.out.println("コマを置くy座標を入力して下さい。");
+				y = s.nextInt();
+
+				// x座標入力受付
+				System.out.println("コマを置くx座標を入力して下さい。");
+				x = s.nextInt();
+			} catch (Exception e) {
+				System.out.println("1~8の数字を入力して下さい。");
+				put(board, color);
+			}
 
 			// 論理チェック
-			if (judg.canPut(board, y, x, color)) {
+			if (judg.canReverse(board, y, x, color)) {
 				isInputOk = true;
 				break;
 			}
@@ -47,11 +56,7 @@ public class OthelloManualTactic implements OthelloTactic {
 			System.out.println("指定箇所にコマを置けません。もう一度入力して下さい。");
 		}
 
-		// コマをおきたい座標を作成
-		int[] result = new int[2];
-		result[0] = y;
-		result[1] = x;
-
-		return result;
+		// 座標にコマを置く
+		board.put(y, x, color);
 	}
 }

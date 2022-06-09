@@ -50,8 +50,8 @@ public class OthelloPlayer implements Player {
 	 * @param mode
 	 */
 	public OthelloPlayer() {
-		this.name = "自分";
-		this.stoneColorStr = "白";
+		this.name = StoneColor.WHITE.getName();
+		this.stoneColorStr = StoneColor.WHITE.getColor();
 		this.stoneColor = StoneColor.WHITE.getColorNum();
 		this.isMyTurn = true;
 		tactic = new OthelloManualTactic();
@@ -61,8 +61,8 @@ public class OthelloPlayer implements Player {
 	 * コンストラクタ
 	 */
 	public OthelloPlayer(String mode) {
-		this.name = "相手";
-		this.stoneColorStr = "黒";
+		this.name = StoneColor.BLACK.getName();
+		this.stoneColorStr = StoneColor.BLACK.getColor();
 		this.stoneColor = StoneColor.BLACK.getColorNum();
 		if (GameMode.PRACTICE.getMode().equals(mode)) {
 			tactic = new OthelloManualTactic();
@@ -80,11 +80,8 @@ public class OthelloPlayer implements Player {
 
 		System.out.println(name + "(" + stoneColorStr + ")のターン！");
 
-		// マスを置く座標を取得
-		int[] yx = tactic.getPosition(board, stoneColor);
-
-		// 取得した座標にコマを置く
-		board.put(yx, stoneColor);
+		// 戦術に基づきコマを任意のマスに置く
+		tactic.put(board, stoneColor);
 	}
 
 	/**
